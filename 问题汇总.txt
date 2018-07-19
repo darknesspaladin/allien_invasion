@@ -1,0 +1,11 @@
+问题一：from pygame.base import * ImportError: DLL load failed: 找不到指定的模块
+    解决措施：先删除干净当前所有的pygame,打开cmd   py -3.6 -m pip install pygame
+
+问题二：Decode error - output not utf-8
+   解决措施：https://blog.csdn.net/zz153417230/article/details/78935265
+           测试输出格式是否为utf-8
+import sys
+print(sys.stdin.encoding)
+print(sys.stdout.encoding)
+
+问题三：安装python 不要选择安装all user,否则会出现，pip安装时权限不够的问题。
