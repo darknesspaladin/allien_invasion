@@ -8,14 +8,20 @@ def check_keydown_events(event,ship):
         ship.moving_right = True
     elif event.key == pygame.K_LEFT:
         ship.moving_left = True
-
+    elif event.key == pygame.K_DOWN:
+        ship.moving_down = True
+    elif event.key == pygame.K_UP:
+        ship.moving_up = True
 def check_keyup_events(event,ship):
     """按键抬起的响应"""
     if event.key == pygame.K_RIGHT:
         ship.moving_right = False
     elif event.key == pygame.K_LEFT:
         ship.moving_left = False
-
+    elif event.key == pygame.K_UP:
+        ship.moving_up = False
+    elif event.key == pygame.K_DOWN:
+        ship.moving_down = False
 def check_events(ship):
     """相应按键和鼠标事件"""
     for event in pygame.event.get():
