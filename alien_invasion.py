@@ -1,7 +1,7 @@
 import sys
 
 import pygame
-
+from pygame.sprite import Group
 from settings import Settings
 from bei_jing_tu import Bei_jing
 from ship import Ship
@@ -16,6 +16,8 @@ def run_game():
 
     # 创建一艘飞船
     ship = Ship(ai_settings,screen)
+    #创建一个用于存储子弹的编组
+    bullet = Group()
     bei_jing = Bei_jing(screen)
 
     #开始游戏主循环
@@ -23,6 +25,7 @@ def run_game():
 
         #监视鼠标和键盘事件
         gf.update_screen(ai_settings,screen,bei_jing,ship)
+        gf.check_events()
         gf.check_events(ship)
         ship.update()
 
