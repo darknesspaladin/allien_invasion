@@ -17,17 +17,16 @@ def run_game():
     # 创建一艘飞船
     ship = Ship(ai_settings,screen)
     #创建一个用于存储子弹的编组
-    bullet = Group()
-    bei_jing = Bei_jing(screen)
+    bullets = Group()
+    #bei_jing = Bei_jing(screen)
 
     #开始游戏主循环
     while True:
 
         #监视鼠标和键盘事件
-        gf.update_screen(ai_settings,screen,bei_jing,ship)
-        gf.check_events()
-        gf.check_events(ship)
+        gf.update_screen(ai_settings,screen,ship,bullets)
+        gf.check_events(ai_settings,screen,ship,bullets) 
+        bullets.update()
         ship.update()
-
 
 run_game()
