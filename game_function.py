@@ -1,5 +1,4 @@
 import sys
-
 import pygame
 from bullet import Bullet
 
@@ -14,10 +13,10 @@ def check_keydown_events(event,ai_settings,screen,ship,bullets):
     elif event.key == pygame.K_UP:
         ship.moving_up = True
     elif event.key == pygame.K_SPACE:
-        # 创建一颗子弹，并将其加入到编组bullets中
-        if len(bullets) <= ai_settings.bullets_allowed:
-            new_bullet = Bullet(ai_settings,screen,ship)
-            bullets.add(new_bullet)
+        fire_bullet(ai_settings,screen,ship,bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
+
 def check_keyup_events(event,ship):
     """按键抬起的响应"""
     if event.key == pygame.K_RIGHT:
@@ -28,6 +27,7 @@ def check_keyup_events(event,ship):
         ship.moving_up = False
     elif event.key == pygame.K_DOWN:
         ship.moving_down = False
+
 def check_events(ai_settings,screen,ship,bullets):
     """相应按键和鼠标事件"""
     for event in pygame.event.get():
@@ -41,7 +41,6 @@ def check_events(ai_settings,screen,ship,bullets):
             check_keyup_events(event,ship)
      
 def update_screen(ai_settings,screen,ship,bullets):
-
     #每次循环时重新汇屏以及背景飞船等内容
     screen.fill(ai_settings.bg_color)
     #bei_jing.blitpic()
@@ -49,7 +48,6 @@ def update_screen(ai_settings,screen,ship,bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()    
-
     #让绘制的屏幕刷新并可见
     pygame.display.flip()
 
@@ -61,3 +59,10 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+def fire_bullet(ai_settings,screen,ship,bullets):
+    """如果还没到达限制，就发射2颗子弹"""
+    # 创建一颗子弹，并将其加入到编组bullets中
+    if len(bullets) <= ai_settings.bullets_allowed:
+        new_bullet = Bullet(ai_settings,screen,ship)
+        bullets.add(new_bullet)
