@@ -40,14 +40,15 @@ def check_events(ai_settings,screen,ship,bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_events(event,ship)
      
-def update_screen(ai_settings,screen,ship,bullets):
+def update_screen(ai_settings,screen,ship,alien,bullets):
     #每次循环时重新汇屏以及背景飞船等内容
     screen.fill(ai_settings.bg_color)
     #bei_jing.blitpic()
     #在飞船和外星人后面重绘制所有子弹
     for bullet in bullets.sprites():
         bullet.draw_bullet()
-    ship.blitme()    
+    ship.blitme()
+    alien.blitme()
     #让绘制的屏幕刷新并可见
     pygame.display.flip()
 

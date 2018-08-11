@@ -5,6 +5,7 @@ from pygame.sprite import Group
 from settings import Settings
 from bei_jing_tu import Bei_jing
 from ship import Ship
+from alien import Alien
 import game_function as gf
 def run_game():
     # chu shi hua you xi 
@@ -18,6 +19,7 @@ def run_game():
     ship = Ship(ai_settings,screen)
     #创建一个用于存储子弹的编组
     bullets = Group()
+    alien = Alien(ai_settings,screen)
     #bei_jing = Bei_jing(screen)
 
     #开始游戏主循环
@@ -28,6 +30,6 @@ def run_game():
         bullets.update() 
         ship.update()
         gf.update_bullets(bullets)
-        gf.update_screen(ai_settings,screen,ship,bullets)
+        gf.update_screen(ai_settings,screen,ship,alien,bullets)
 
 run_game()
