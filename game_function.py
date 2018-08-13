@@ -1,6 +1,7 @@
 import sys
 import pygame
 from bullet import Bullet
+from alien import Alien
 
 def check_keydown_events(event,ai_settings,screen,ship,bullets):
     """按键按下的相应"""
@@ -48,7 +49,7 @@ def update_screen(ai_settings,screen,ship,alien,bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
-    alien.blitme()
+    aliens.blitme()
     #让绘制的屏幕刷新并可见
     pygame.display.flip()
 
@@ -67,3 +68,18 @@ def fire_bullet(ai_settings,screen,ship,bullets):
     if len(bullets) <= ai_settings.bullets_allowed:
         new_bullet = Bullet(ai_settings,screen,ship)
         bullets.add(new_bullet)
+
+def create_fleet(ai_settings,screen,aliens):
+    """创建外星人群"""
+    #创建一个外星人并能计算一行能够容纳多少个外星人
+    #外星人间距为外星人的宽度
+    alien = Alien(ai_settings,screen)
+    alien_width = alien.rect.width
+    available_apace_x = aisettings.screen_width - (2 * alien_width)
+    number_aliens_x = available_space_x / (2 * alien_width)
+
+    #创建第一行外星人并将其加入到当前列
+    for alien_number in range(number_aliens_x):
+        alien = Alien(ai_settings,screen)
+        alien.x = alien_width + 2 * alien_width * alien_number
+        
