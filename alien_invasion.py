@@ -21,7 +21,7 @@ def run_game():
     bullets = Group()
     aliens = Group()
     #创建外星人群
-    gf.create_fleet(ai_settings,screen,aliens)
+    gf.create_fleet(ai_settings,screen,ship,aliens)
     #bei_jing = Bei_jing(screen)
 
     #开始游戏主循环
